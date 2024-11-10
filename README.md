@@ -72,3 +72,29 @@ This repository includes:
 - `requirements.txt`: File listing all necessary Python libraries for the app.
 
 After unzipping, the dataset should follow this structure:
+
+heart_dataset_sup/
+│
+├── heart_dataset/
+│   ├── images/
+│   │   ├── train/
+│   │   └── val/
+│   └── labels/
+│       ├── train/
+│       └── val/
+
+
+## Contributing
+
+Feel free to fork this repository, create issues, or submit pull requests if you would like to contribute. For major changes, please open an issue to discuss your ideas.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+
+Additional Notes
+
+	1.	Screenshot: Replace screenshot.png with an actual screenshot if you have one.
+	2.	LICENSE: If you have a specific license, replace the license text accordingly.
+	3.	Links: Modify any links and information to match the actual repository details or personal information.
