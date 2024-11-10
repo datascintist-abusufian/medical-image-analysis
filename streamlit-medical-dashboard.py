@@ -18,6 +18,29 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# Dataset setup function
+def setup_dataset():
+    dataset_url = "https://github.com/datascintist-abusufian/medical-image-analysis/raw/main/heart_dataset_sup.zip"
+    dataset_path = "heart_dataset_sup.zip"
+    extract_folder = "heart_dataset_sup"
+    
+    if not os.path.exists(extract_folder):
+        # Download the dataset
+        with st.spinner("Downloading dataset..."):
+            response = requests.get(dataset_url)
+            with open(dataset_path, "wb") as f:
+                f.write(response.content)
+        
+        # Extract the dataset
+        with zipfile.ZipFile(dataset_path, "r") as zip_ref:
+            zip_ref.extractall()
+        st.success("Dataset downloaded and extracted successfully!")
+    else:
+        st.info("Dataset already exists locally.")
+
+# Call dataset setup
+setup_dataset()
+
 # Custom CSS to improve layout
 st.markdown("""
     <style>
@@ -32,24 +55,6 @@ st.markdown("""
     }
     </style>
 """, unsafe_allow_html=True)
-
-# Function to download and extract the dataset
-def download_and_extract_zip(url, extract_to='.'):
-    response = requests.get(url)
-    if response.status_code == 200:
-        with zipfile.ZipFile(io.BytesIO(response.content)) as zip_ref:
-            zip_ref.extractall(extract_to)
-        st.success("Dataset downloaded and extracted successfully.")
-    else:
-        st.error("Failed to download the dataset.")
-
-# Run this only if the dataset is not already downloaded
-dataset_path = 'heart_dataset_sup/heart_dataset'
-if not os.path.exists(dataset_path):
-    download_and_extract_zip(
-        'https://github.com/datascintist-abusufian/medical-image-analysis/raw/main/heart_dataset_sup.zip', 
-        extract_to='.'
-    )
 
 def main():
     st.title("Medical Image Analysis Dashboard")
