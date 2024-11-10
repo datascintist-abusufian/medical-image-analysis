@@ -93,8 +93,3 @@ Feel free to fork this repository, create issues, or submit pull requests if you
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 
-Additional Notes
-
-	1.	Screenshot: Replace screenshot.png with an actual screenshot if you have one.
-	2.	LICENSE: If you have a specific license, replace the license text accordingly.
-	3.	Links: Modify any links and information to match the actual repository details or personal information.
