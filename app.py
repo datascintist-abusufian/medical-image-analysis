@@ -26,9 +26,9 @@ st.set_page_config(
 )
 
 # Constants
-DATASET_URL = "https://github.com/datascintist-abusufian/medical-image-analysis/raw/main/heart_dataset_sup.zip"
-DATASET_PATH = "heart_dataset_sup.zip"
-EXTRACT_FOLDER = "heart_dataset_sup"
+DATASET_URL = "https://github.com/datascintist-abusufian/medical-image-analysis/raw/main/images.zip"
+DATASET_PATH = "images.zip"
+EXTRACT_FOLDER = "images"
 
 # Custom CSS
 st.markdown("""
