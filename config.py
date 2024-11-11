@@ -3,9 +3,9 @@ from pathlib import Path
 
 # GitHub repository configurations
 REPO_NAME = "medical-image-analysis"
-DATASET_URL = "https://github.com/datascintist-abusufian/medical-image-analysis/raw/main/heart_dataset_sup.zip"
-DATASET_FILENAME = "heart_dataset_sup.zip"
-EXTRACT_FOLDER = "heart_dataset_sup"
+DATASET_URL = "https://github.com/datascintist-abusufian/medical-image-analysis/raw/main/images.zip"
+DATASET_FILENAME = "images.zip"
+EXTRACT_FOLDER = "images"
 
 # Directory paths
 BASE_DIR = Path(__file__).parent
