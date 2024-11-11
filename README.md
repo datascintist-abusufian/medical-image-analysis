@@ -1,95 +1,166 @@
 # Medical Image Analysis Dashboard
 
-This repository contains a Streamlit-based web application for analyzing medical images, specifically designed to display metrics and visualizations for medical image segmentation tasks.
+A Streamlit-based dashboard for medical image analysis with advanced visualization and analysis capabilities.
 
-![Medical Image Analysis Dashboard](screenshot.png) <!-- Optionally, include a screenshot if you have one -->
+## 🌟 Features
 
-## Table of Contents
-- [Overview](#overview)
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Folder Structure](#folder-structure)
-- [Contributing](#contributing)
-- [License](#license)
+- **Image Analysis**
+  - Upload and process medical images
+  - Support for PNG, JPG, JPEG formats
+  - DICOM support coming soon
 
-## Overview
+- **Advanced Analytics**
+  - Uncertainty Analysis
+  - Sensitivity Analysis
+  - Regional Performance Analysis
+  - Performance Radar Visualization
 
-The **Medical Image Analysis Dashboard** is a tool for medical image analysis, offering functionalities for segmentation visualization, metrics calculation, and performance monitoring. It includes:
-- **Upload Options** for medical image files (PNG, JPG, JPEG, DICOM).
-- **Metrics Calculation** such as Dice Score, IoU Score, Sensitivity, Specificity, etc.
-- **Visualization Tools** for tracking segmentation performance over time.
+- **Key Metrics**
+  - Dice Score
+  - IoU Score
+  - Sensitivity/Specificity
+  - Precision/Accuracy
+  - F1 Score
+  - Hausdorff Distance
 
-This dashboard was created by [Md Abu Sufian](https://github.com/datascintist-abusufian) for medical researchers and data scientists to assist in analyzing and interpreting medical image data.
+## 🚀 Quick Start
 
-## Features
+### Prerequisites
 
-- **Image Upload**: Supports image formats such as PNG, JPG, JPEG, and DICOM.
-- **Segmentation Visualization**: Displays original and segmented images side-by-side.
-- **Metrics Display**: Includes Dice Score, IoU Score, Sensitivity, Specificity, Precision, Accuracy, F1 Score, and Hausdorff Distance.
-- **Time Series Plot**: Graphs metrics over time.
-- **Regional Analysis**: Displays performance across different regions using bar and radar charts.
+- Python 3.8 or higher
+- pip package manager
 
-## Installation
+### Installation
 
-1. **Clone this repository**:
-    ```bash
-    git clone https://github.com/datascintist-abusufian/medical-image-analysis.git
-    cd medical-image-analysis
-    ```
+1. Clone the repository:
+```bash
+git clone https://github.com/your-username/medical-image-analysis.git
+cd medical-image-analysis
+```
 
-2. **Install dependencies**:
-    - It is recommended to use a virtual environment:
-      ```bash
-      python3 -m venv venv
-      source venv/bin/activate  # On Windows: venv\Scripts\activate
-      ```
-    - Install required packages:
-      ```bash
-      pip install -r requirements.txt
-      ```
+2. Create and activate a virtual environment (recommended):
+```bash
+# Windows
+python -m venv venv
+venv\Scripts\activate
 
-3. **Download and Extract Dataset**:
-    - The `heart_dataset_sup.zip` file contains sample medical images and should be downloaded programmatically within the script. The code will automatically handle this (see Usage below).
+# macOS/Linux
+python3 -m venv venv
+source venv/bin/activate
+```
 
-## Usage
+3. Install required packages:
+```bash
+pip install -r requirements.txt
+```
 
-1. **Run the Streamlit App**:
-    ```bash
-    streamlit run streamlit-medical-dashboard.py
-    ```
+### Running the Application
 
-2. **Using the Application**:
-   - Upload medical images for analysis by selecting PNG, JPG, JPEG, or DICOM files.
-   - Adjust settings like segmentation threshold and analysis type from the sidebar.
-   - View original and segmented images, metrics, and analysis visualizations in the main area.
+```bash
+streamlit run app.py
+```
 
-## Folder Structure
+## 📊 Dashboard Components
 
-This repository includes:
-- `streamlit-medical-dashboard.py`: The main Streamlit app script.
-- `heart_dataset_sup.zip`: Zipped dataset with a folder structure for sample medical images.
-- `requirements.txt`: File listing all necessary Python libraries for the app.
+1. **Image Upload & Display**
+   - Original image view
+   - Segmentation result visualization
+   - Support for multiple image formats
 
-After unzipping, the dataset should follow this structure:
+2. **Metrics Display**
+   - Real-time calculation of key metrics
+   - Interactive visualization
+   - Comparative analysis
 
-heart_dataset_sup/
-│
-├── heart_dataset/
-│   ├── images/
-│   │   ├── train/
-│   │   └── val/
-│   └── labels/
-│       ├── train/
-│       └── val/
+3. **Advanced Analysis**
+   - Uncertainty Analysis with confidence intervals
+   - Sensitivity Analysis with perturbation plots
+   - Regional Performance Analysis with heatmaps
+   - Performance Radar with baseline comparison
 
+## 💻 Usage
 
-## Contributing
+1. Launch the application using `streamlit run app.py`
+2. Upload a medical image using the sidebar
+3. Adjust analysis settings as needed
+4. View various analyses through the interactive tabs
+5. Export or save results as needed
 
-Feel free to fork this repository, create issues, or submit pull requests if you would like to contribute. For major changes, please open an issue to discuss your ideas.
+## 📂 Project Structure
 
-## License
+```
+medical-image-analysis/
+├── app.py              # Main application file
+├── requirements.txt    # Python dependencies
+├── README.md          # Project documentation
+└── data/              # Data directory (created automatically)
+    └── heart_dataset_sup/
+```
+
+## 🛠️ Technical Details
+
+### Built With
+- [Streamlit](https://streamlit.io/) - The web framework used
+- [Plotly](https://plotly.com/) - Interactive visualizations
+- [OpenCV](https://opencv.org/) - Image processing
+- [NumPy](https://numpy.org/) & [Pandas](https://pandas.pydata.org/) - Data processing
+
+### System Requirements
+- RAM: 4GB minimum (8GB recommended)
+- Storage: 500MB free space
+- CPU: Multi-core processor recommended
+
+## 📋 Data Format
+
+The dashboard currently supports:
+- PNG images
+- JPG/JPEG images
+- DICOM support coming soon
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## 📞 Contact
 
+Your Name - [@your_twitter](https://twitter.com/your_twitter)
+
+Project Link: [https://github.com/your-username/medical-image-analysis](https://github.com/your-username/medical-image-analysis)
+
+## 🙏 Acknowledgments
+
+- Reference any papers or datasets used
+- Credit to contributors
+- Mention any inspirations or related projects
+
+## 🔄 Updates & Version History
+
+- v1.0.0 (Current)
+  - Initial release
+  - Basic image analysis functionality
+  - Advanced visualization features
+
+## 📝 Citation
+
+If you use this software in your research, please cite:
+
+```bibtex
+@software{medical_image_analysis,
+  author = {Your Name},
+  title = {Medical Image Analysis Dashboard},
+  year = {2024},
+  url = {https://github.com/your-username/medical-image-analysis}
+}
+```
+
+## ⚠️ Disclaimer
+
+This software is for research and educational purposes only. Not intended for clinical use or medical diagnosis.
