@@ -1,26 +1,20 @@
-# Core packages
+# Core packages with specific versions
 streamlit==1.24.0
-numpy>=1.21.0
-pandas>=1.3.0
-Pillow>=8.3.0
-requests>=2.26.0
-plotly>=5.3.0
-scipy>=1.7.0
+numpy==1.24.3
+pandas==2.0.3
+Pillow==9.5.0
+requests==2.31.0
+plotly==5.18.0
+scipy==1.10.1
 
-# Image processing
-opencv-python-headless>=4.5.3
-scikit-image>=0.18.0
+# Image processing with compatible versions
+opencv-python-headless==4.8.1.78
+scikit-image==0.21.0
 
 # Data visualization
-matplotlib>=3.4.0
-seaborn>=0.11.0
+matplotlib==3.7.1
+seaborn==0.12.2
 
-# Medical imaging
-pydicom>=2.2.0
-
-# Progress bars and utilities
-tqdm>=4.62.0
-
-# Optional - development tools
-python-dotenv>=0.19.0
-jupyter>=1.0.0
+# Optional packages
+tqdm==4.66.1
+python-dotenv==1.0.0
