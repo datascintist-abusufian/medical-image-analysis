@@ -131,9 +131,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_twitter)
+Your Name - [linkedin](https://www.linkedin.com/in/tacticalbusinessintelligence/)
 
-Project Link: [https://github.com/your-username/medical-image-analysis](https://github.com/your-username/medical-image-analysis)
+Project Link: [https://github.com/datascintist-abusufian/medical-image-analysis]
 
 ## 🙏 Acknowledgments
 
@@ -157,7 +157,7 @@ If you use this software in your research, please cite:
   author = {Your Name},
   title = {Medical Image Analysis Dashboard},
   year = {2024},
-  url = {https://github.com/your-username/medical-image-analysis}
+  url = {https://github.com/datascintist-abusufian/medical-image-analysis}
 }
 ```
 
