@@ -2,6 +2,8 @@
 
 A Streamlit-based dashboard for medical image analysis with advanced visualization and analysis capabilities.
 
+> **Related project:** this dashboard is the evaluation companion to [triFuse-pytorch](https://github.com/datascintist-abusufian/triFuse-pytorch) - the TriFuse-SRNet reference implementation for scribble-supervised cardiac MRI segmentation. Generate segmentation masks with triFuse-pytorch, then score and inspect them here (Dice, IoU, Hausdorff distance, uncertainty, sensitivity and regional performance).
+
 ## 🌟 Features
 
 - **Image Analysis**
@@ -34,7 +36,7 @@ A Streamlit-based dashboard for medical image analysis with advanced visualizati
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/medical-image-analysis.git
+git clone https://github.com/datascintist-abusufian/medical-image-analysis.git
 cd medical-image-analysis
 ```
 
@@ -90,10 +92,10 @@ streamlit run app.py
 
 ```
 medical-image-analysis/
-├── app.py              # Main application file
-├── requirements.txt    # Python dependencies
-├── README.md          # Project documentation
-└── data/              # Data directory (created automatically)
+├── app.py               # Main application file
+├── requirements.txt     # Python dependencies
+├── README.md            # Project documentation
+└── data/                # Data directory (created automatically)
     └── heart_dataset_sup/
 ```
 
@@ -131,15 +133,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-Your Name - [linkedin](https://www.linkedin.com/in/tacticalbusinessintelligence/)
+Md Abu Sufian - [LinkedIn](https://www.linkedin.com/in/tacticalbusinessintelligence/) | [Google Scholar](https://scholar.google.com/citations?user=8ozStcUAAAAJ&hl=en) | [GitHub](https://github.com/datascintist-abusufian)
 
-Project Link: [https://github.com/datascintist-abusufian/medical-image-analysis]
+Project link: https://github.com/datascintist-abusufian/medical-image-analysis
 
 ## 🙏 Acknowledgments
 
-- Reference any papers or datasets used
-- Credit to contributors
-- Mention any inspirations or related projects
+- Developed to support evaluation of the TriFuse-SRNet segmentation work in [triFuse-pytorch](https://github.com/datascintist-abusufian/triFuse-pytorch)
+- Metric definitions follow standard practice for medical image segmentation evaluation (Dice, IoU, Hausdorff distance)
+- Built with Streamlit, Plotly, OpenCV, NumPy and Pandas
 
 ## 🔄 Updates & Version History
 
@@ -153,11 +155,11 @@ Project Link: [https://github.com/datascintist-abusufian/medical-image-analysis]
 If you use this software in your research, please cite:
 
 ```bibtex
-@software{medical_image_analysis,
-  author = {Your Name},
-  title = {Medical Image Analysis Dashboard},
-  year = {2024},
-  url = {https://github.com/datascintist-abusufian/medical-image-analysis}
+@software{sufian_medical_image_analysis,
+  author = {Sufian, Md Abu},
+  title  = {Medical Image Analysis Dashboard},
+  year   = {2024},
+  url    = {https://github.com/datascintist-abusufian/medical-image-analysis}
 }
 ```
 
