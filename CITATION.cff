@@ -5,6 +5,8 @@ title: "Medical Image Analysis Dashboard: segmentation quality assessment for me
 authors:
   - family-names: Sufian
     given-names: "Md Abu"
+    affiliation: "University of East London"
+    orcid: "https://orcid.org/0009-0007-3503-6942"
 repository-code: "https://github.com/datascintist-abusufian/medical-image-analysis"
 license: MIT
 abstract: "Streamlit dashboard for assessing the quality of medical image segmentation, reporting Dice, IoU, Hausdorff distance, uncertainty, sensitivity and regional performance. Used as the evaluation companion to the TriFuse-SRNet cardiac MRI segmentation work."
