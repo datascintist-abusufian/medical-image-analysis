@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "Medical Image Analysis Dashboard: segmentation quality assessment for medical imaging"
+authors:
+  - family-names: Sufian
+    given-names: "Md Abu"
+repository-code: "https://github.com/datascintist-abusufian/medical-image-analysis"
+license: MIT
+abstract: "Streamlit dashboard for assessing the quality of medical image segmentation, reporting Dice, IoU, Hausdorff distance, uncertainty, sensitivity and regional performance. Used as the evaluation companion to the TriFuse-SRNet cardiac MRI segmentation work."
+keywords:
+  - medical imaging
+  - image segmentation
+  - evaluation metrics
+  - uncertainty quantification
+  - cardiac MRI
