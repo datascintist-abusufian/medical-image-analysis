@@ -2,7 +2,9 @@
 
 A Streamlit-based dashboard for medical image analysis with advanced visualization and analysis capabilities.
 
-> **Related project:** this dashboard is the evaluation companion to [triFuse-pytorch](https://github.com/datascintist-abusufian/triFuse-pytorch) - the TriFuse-SRNet reference implementation for scribble-supervised cardiac MRI segmentation. Generate segmentation masks with triFuse-pytorch, then score and inspect them here (Dice, IoU, Hausdorff distance, uncertainty, sensitivity and regional performance).
+> **Related project:** this dashboard is being developed as the evaluation companion to [triFuse-pytorch](https://github.com/datascintist-abusufian/triFuse-pytorch) - the TriFuse-SRNet reference implementation for scribble-supervised cardiac MRI segmentation. The goal is to score and inspect segmentation masks (Dice, IoU, Hausdorff distance, uncertainty, sensitivity and regional performance).
+
+> **Current status - prototype.** The interface, layout and visualisations are in place, but the metric values are **simulated placeholders** (`ImageProcessor.calculate_metrics` in `app.py` generates them around a fixed baseline with random noise). They are not computed from the uploaded image or from TriFuse-SRNet outputs. Computing the metrics from predicted and ground-truth mask pairs is the next step.
 
 ## 🌟 Features
 
@@ -70,7 +72,7 @@ streamlit run app.py
    - Support for multiple image formats
 
 2. **Metrics Display**
-   - Real-time calculation of key metrics
+   - Metric cards for key metrics (currently simulated placeholder values; see *Current status* above)
    - Interactive visualization
    - Comparative analysis
 
@@ -139,7 +141,7 @@ Project link: https://github.com/datascintist-abusufian/medical-image-analysis
 
 ## 🙏 Acknowledgments
 
-- Developed to support evaluation of the TriFuse-SRNet segmentation work in [triFuse-pytorch](https://github.com/datascintist-abusufian/triFuse-pytorch)
+- Being developed to support evaluation of the TriFuse-SRNet segmentation work in [triFuse-pytorch](https://github.com/datascintist-abusufian/triFuse-pytorch)
 - Metric definitions follow standard practice for medical image segmentation evaluation (Dice, IoU, Hausdorff distance)
 - Built with Streamlit, Plotly, OpenCV, NumPy and Pandas
 
