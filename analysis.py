@@ -30,33 +30,40 @@ AHA_NAMES = {
 # --------------------------------------------------------------------------------------
 # 3D / 4D reconstruction
 # --------------------------------------------------------------------------------------
-def shape_based_interpolation(mask, factor):
-    """Upsample a binary stack along the slice axis by interpolating signed distance maps
-    (Raya & Udupa 1990) so that thick-slice masks give smooth surfaces."""
-    if factor <= 1 or not mask.any():
-        return mask.astype(bool)
-    inside = ndimage.distance_transform_edt(mask)
-    outside = ndimage.distance_transform_edt(~mask)
-    sdf = outside - inside  # negative inside
-    up = ndimage.zoom(sdf, (1, 1, factor), order=1)
-    return up < 0
+def shape_based_interpolation(mask, factor, spacing=(1.0, 1.0, 1.0), smooth=0.8):
+    """Signed distance map (mm, negative inside) of a binary stack, upsampled along the slice
+    axis by `factor` (shape-based interpolation, Raya & Udupa 1990) and lightly smoothed, so
+    that thick-slice masks give smooth surfaces instead of terraces."""
+    m = mask.astype(bool)
+    inside = ndimage.distance_transform_edt(m, sampling=spacing)
+    outside = ndimage.distance_transform_edt(~m, sampling=spacing)
+    sdf = (outside - inside).astype(np.float32)
+    if factor > 1:
+        sdf = ndimage.zoom(sdf, (1, 1, factor), order=1)
+    if smooth:
+        sdf = ndimage.gaussian_filter(sdf, sigma=(smooth, smooth, smooth * factor / 2))
+    return sdf
 
 
 def surface_mesh(mask, spacing, factor=None, step=1):
-    """Marching-cubes triangle mesh (vertices in mm) of a binary 3D mask."""
+    """Smooth triangle mesh (vertices in mm) of a binary 3D mask via marching cubes on the
+    interpolated signed distance map."""
     mask = mask.astype(bool)
     if mask.sum() < 20:
         return None
     if factor is None:
-        factor = max(1, int(round(spacing[2] / max(spacing[0], spacing[1]) / 2)))
-    vol = shape_based_interpolation(mask, factor)
-    vol = np.pad(vol, 1)
+        factor = int(np.clip(round(spacing[2] / max(spacing[0], spacing[1])), 1, 8))
+    idx = np.argwhere(mask)
+    lo = np.maximum(idx.min(0) - [4, 4, 1], 0)
+    hi = np.minimum(idx.max(0) + [5, 5, 2], mask.shape)
+    crop = np.pad(mask[lo[0]:hi[0], lo[1]:hi[1], lo[2]:hi[2]], 1)
+    sdf = shape_based_interpolation(crop, factor, spacing)
     sp = (spacing[0], spacing[1], spacing[2] / factor)
     try:
-        verts, faces, _, _ = measure.marching_cubes(vol.astype(np.float32), 0.5, spacing=sp,
-                                                    step_size=step)
+        verts, faces, _, _ = measure.marching_cubes(sdf, 0.0, spacing=sp, step_size=step)
     except (ValueError, RuntimeError):
         return None
+    verts += (lo - 1) * np.array(spacing)        # back to image coordinates (mm)
     return verts, faces
 
 
