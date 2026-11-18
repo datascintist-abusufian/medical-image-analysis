@@ -30,6 +30,8 @@ import streamlit as st
 from huggingface_hub import hf_hub_download
 from scipy import ndimage
 
+import advanced
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -114,7 +116,7 @@ def load_acdc(pid, split, ed, es):
         gt[..., f - 1] = np.asanyarray(g.dataobj).astype(np.uint8)
         has_gt[f - 1] = True
     return dict(img=vol, gt=gt, has_gt=has_gt, spacing=tuple(float(z) for z in zooms),
-                ed=ed - 1, es=es - 1, stacked=False)
+                ed=ed - 1, es=es - 1, stacked=False, affine=img.affine)
 
 
 @st.cache_resource(max_entries=2, show_spinner="Downloading 4D MRI from Hugging Face…")
@@ -132,7 +134,7 @@ def load_cmr(case_id):
     spacing = (float(zx), float(zy), float(zz) * t)
     lv = (gt == LABELS["CMR-MULTI"]["LV cavity"]).sum((0, 1, 2))
     return dict(img=vol, gt=gt, has_gt=np.ones(t, dtype=bool), spacing=spacing,
-                ed=int(lv.argmax()), es=int(lv.argmin()), stacked=True)
+                ed=int(lv.argmax()), es=int(lv.argmin()), stacked=True, affine=img.affine)
 
 
 # --------------------------------------------------------------------------------------
@@ -632,16 +634,33 @@ def main():
         return
 
     header(source, case, data)
-    tabs = st.tabs(["🎞️ 4D viewer", "❤️ Cardiac function", "📏 Segmentation metrics", "ℹ️ Data & methods"])
-    with tabs[0]:
+    sections = ["4D viewer", "Cardiac function", "Segmentation metrics", "3D/4D reconstruction",
+                "Regional (AHA)", "Motion & strain", "Diagnosis", "QC & report", "Imaging guide",
+                "Research & data"]
+    choice = st.radio("Analysis", sections, horizontal=True, label_visibility="collapsed")
+    choice = choice or sections[0]
+    if choice == sections[0]:
         tab_viewer(data, labels, show, alpha)
-    with tabs[1]:
+    elif choice == sections[1]:
         tab_function(source, case, data, labels)
-    with tabs[2]:
+    elif choice == sections[2]:
         tab_metrics(source, data, labels, pred_mode, uploaded)
-    with tabs[3]:
+    elif choice == sections[3]:
+        advanced.section_reconstruction(source, case, data, labels, COLOURS)
+    elif choice == sections[4]:
+        advanced.section_regional(source, case, data, labels, metric_row)
+    elif choice == sections[5]:
+        advanced.section_motion(source, case, data, labels, COLOURS, metric_row)
+    elif choice == sections[6]:
+        advanced.section_diagnosis(source, case, data, labels, metric_row)
+    elif choice == sections[7]:
+        advanced.section_qc_report(source, case, data, labels, volumes_over_time(data, labels),
+                                   metric_row)
+    elif choice == sections[8]:
+        advanced.section_guide()
+    else:
+        advanced.section_research()
         tab_about()
-
 
 if __name__ == "__main__":
     main()
