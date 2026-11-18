@@ -126,7 +126,9 @@ def section_reconstruction(source, case, data, labels, colours):
     fig = go.Figure(traces)
     fig.update_layout(scene=_scene(traces), height=560, margin=dict(l=0, r=0, t=0, b=0),
                       legend=dict(orientation="h"))
-    st.plotly_chart(fig, width="stretch")
+    st.plotly_chart(fig, width="stretch", config={"scrollZoom": False})
+    st.caption("Drag to rotate; use the toolbar to zoom (mouse-wheel zoom is off so page scrolling "
+               "does not shrink the heart).")
     if lab4d is None:
         st.info("Expert masks for ACDC exist only at ED and ES. Run **Motion & strain → motion "
                 "tracking** to reconstruct every frame of the heartbeat in 4D.")
@@ -151,7 +153,7 @@ def section_reconstruction(source, case, data, labels, colours):
                                               args=[[fo.name], dict(mode="immediate",
                                                                     frame=dict(duration=0, redraw=True))])
                                          for fo in fr_objs], currentvalue=dict(prefix="frame "))])
-                st.plotly_chart(anim, width="stretch")
+                st.plotly_chart(anim, width="stretch", config={"scrollZoom": False})
 
     vox = np.prod(data["spacing"]) / 1000.0
     rows = []
