@@ -1,6 +1,9 @@
-streamlit>=1.40,<1.50
+streamlit>=1.49
 numpy
 pandas
 plotly
 Pillow
 requests
+nibabel
+scipy
+huggingface_hub
