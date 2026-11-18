@@ -1,176 +1,92 @@
-# Medical Image Analysis Dashboard
+# 4D Cardiac MRI Analysis Dashboard
 
-A Streamlit-based dashboard for medical image analysis with advanced visualization and analysis capabilities.
+A Streamlit dashboard for exploring public **4D cine cardiac MRI** (3D + time) with expert segmentations, and for computing **real segmentation-quality metrics** and **cardiac function** from them.
 
-> **Related project:** this dashboard is being developed as the evaluation companion to [triFuse-pytorch](https://github.com/datascintist-abusufian/triFuse-pytorch) - the TriFuse-SRNet reference implementation for scribble-supervised cardiac MRI segmentation. The goal is to score and inspect segmentation masks (Dice, IoU, Hausdorff distance, uncertainty, sensitivity and regional performance).
+**Live app:** https://abusufian-medical-image-analysis-pro.streamlit.app/
 
-> **Current status - prototype.** The interface, layout and visualisations are in place, but the metric values are **simulated placeholders** (`ImageProcessor.calculate_metrics` in `app.py` generates them around a fixed baseline with random noise). They are not computed from the uploaded image or from TriFuse-SRNet outputs. Computing the metrics from predicted and ground-truth mask pairs is the next step.
+> **Related project:** this dashboard is the evaluation companion to [triFuse-pytorch](https://github.com/datascintist-abusufian/triFuse-pytorch), the TriFuse-SRNet reference implementation for scribble-supervised cardiac MRI segmentation. Upload a predicted mask and it is scored against the expert masks.
 
-## Block diagram
+## 🫀 Data
 
-![Block diagram: image upload, loading and settings, quality metrics, analysis tabs, interactive dashboard output](docs/figures/dashboard_block_diagram.png)
+The app downloads cases on demand from Hugging Face. No imaging data is stored in this repository; `data/` holds only small case catalogues (IDs, diagnostic group, ED/ES frame, height/weight, reported LVEF).
 
-**Figure 1.** How an image moves through `app.py`: upload (PNG/JPG; sample cardiac MRI slices from `images.zip`) → load and sidebar settings → eight segmentation-quality metrics → four analysis tabs (uncertainty, sensitivity, regional, performance radar) → interactive dashboard. The dashed row shows the planned step: computing the metrics from a TriFuse-SRNet predicted mask and its ground-truth mask, replacing the simulated values.
+| Source | Cases | What is 4D | Expert masks | Licence |
+|---|---|---|---|---|
+| **ACDC** (MICCAI 2017) | 150 patients, 5 groups: NOR, MINF, DCM, HCM, RV | Short-axis cine, ~10 slices × 12–35 frames | LV cavity, myocardium, RV cavity at ED and ES | CC BY-NC-SA 4.0 |
+| **CMR-MULTI** (MICCAI 2026) | 105 multi-centre patients | Short-axis cine, ~11 slices × 25–30 frames | LV cavity, myocardium, RV cavity on **every frame** | CC BY-NC 4.0, academic use only |
+
+* ACDC: Bernard O., Lalande A., Zotti C., Cervenansky F. *et al.* "Deep Learning Techniques for Automatic MRI Cardiac Multi-structures Segmentation and Diagnosis: Is the Problem Solved?" *IEEE Transactions on Medical Imaging* 37(11):2514–2525, 2018. doi:[10.1109/TMI.2018.2837502](https://doi.org/10.1109/TMI.2018.2837502). Official site: https://www.creatis.insa-lyon.fr/Challenge/acdc/ (loaded from the unmodified mirror `MedOtter/ACDC`).
+* CMR-MULTI: Universal Multi-Sequence, Multi-Center and Multi-View CMR Segmentation Challenge, 1st Workshop on Medical World Models, MICCAI 2026. BAAI and Beijing Anzhen Hospital. https://mwm2026.github.io/cmr-multi · https://huggingface.co/datasets/TaipingQu/CMR-MULTI
+
+CMR-MULTI stores each cine series as slices × frames stacked along one axis. The app finds the frame count from the drop in image correlation at slice boundaries and reshapes the series to 4D.
 
 ## 🌟 Features
 
-- **Image Analysis**
-  - Upload and process medical images
-  - Support for PNG, JPG, JPEG formats
-  - DICOM support coming soon
+- **4D viewer**: pick a patient, browse slices and cardiac phases, play the cine loop of any slice, and see all slices at once with LV/myocardium/RV overlays.
+- **Cardiac function from the masks**: LV and RV EDV, ESV, stroke volume and EF; LV mass (1.05 g/mL); BSA-indexed values for ACDC; volume–time curves over the whole heartbeat for CMR-MULTI.
+- **Segmentation metrics computed from mask pairs**: Dice, IoU, sensitivity, specificity, precision, volume error, HD95 and ASSD (3D, in mm, using the true voxel spacing).
+  - **Regional**: Dice per slice from base to apex.
+  - **Uncertainty**: bootstrap 95% confidence interval of per-slice Dice.
+  - **Temporal**: Dice across the cardiac cycle when every frame is labelled.
+  - CSV export.
+- **What gets evaluated**
+  - *Upload my predicted mask*: a NIfTI mask for one frame (3D), for all frames (4D), or, for CMR-MULTI, in the original stacked layout. Use the dataset's label IDs, which the app lists in the sidebar.
+  - *Classical baseline*: Otsu threshold inside a window around the expert LV. It demonstrates the metrics and is not an automatic model.
 
-- **Advanced Analytics**
-  - Uncertainty Analysis
-  - Sensitivity Analysis
-  - Regional Performance Analysis
-  - Performance Radar Visualization
+## 🚀 Quick start
 
-- **Key Metrics**
-  - Dice Score
-  - IoU Score
-  - Sensitivity/Specificity
-  - Precision/Accuracy
-  - F1 Score
-  - Hausdorff Distance
-
-## 🚀 Quick Start
-
-### Prerequisites
-
-- Python 3.8 or higher
-- pip package manager
-
-### Installation
-
-1. Clone the repository:
 ```bash
 git clone https://github.com/datascintist-abusufian/medical-image-analysis.git
 cd medical-image-analysis
-```
-
-2. Create and activate a virtual environment (recommended):
-```bash
-# Windows
-python -m venv venv
-venv\Scripts\activate
-
-# macOS/Linux
-python3 -m venv venv
-source venv/bin/activate
-```
-
-3. Install required packages:
-```bash
+python3 -m venv venv && source venv/bin/activate   # Windows: venv\Scripts\activate
 pip install -r requirements.txt
-```
-
-### Running the Application
-
-```bash
 streamlit run app.py
 ```
 
-## 📊 Dashboard Components
+Each case downloads once (about 5–20 MB) and is then cached in `/tmp/hf_cardiac_cache`.
 
-1. **Image Upload & Display**
-   - Original image view
-   - Segmentation result visualization
-   - Support for multiple image formats
-
-2. **Metrics Display**
-   - Metric cards for key metrics (currently simulated placeholder values; see *Current status* above)
-   - Interactive visualization
-   - Comparative analysis
-
-3. **Advanced Analysis**
-   - Uncertainty Analysis with confidence intervals
-   - Sensitivity Analysis with perturbation plots
-   - Regional Performance Analysis with heatmaps
-   - Performance Radar with baseline comparison
-
-## 💻 Usage
-
-1. Launch the application using `streamlit run app.py`
-2. Upload a medical image using the sidebar
-3. Adjust analysis settings as needed
-4. View various analyses through the interactive tabs
-5. Export or save results as needed
-
-## 📂 Project Structure
+## 📂 Project structure
 
 ```
 medical-image-analysis/
-├── app.py               # Main application file
-├── requirements.txt     # Python dependencies
-├── README.md            # Project documentation
-└── data/                # Data directory (created automatically)
-    └── heart_dataset_sup/
+├── app.py                        # Streamlit app
+├── requirements.txt
+├── data/
+│   ├── acdc_catalog.csv          # ACDC case list (no images)
+│   └── cmr_multi_catalog.csv     # CMR-MULTI case list (no images)
+└── docs/
 ```
 
-## 🛠️ Technical Details
+## 🛠️ Built with
 
-### Built With
-- [Streamlit](https://streamlit.io/) - The web framework used
-- [Plotly](https://plotly.com/) - Interactive visualizations
-- [OpenCV](https://opencv.org/) - Image processing
-- [NumPy](https://numpy.org/) & [Pandas](https://pandas.pydata.org/) - Data processing
-
-### System Requirements
-- RAM: 4GB minimum (8GB recommended)
-- Storage: 500MB free space
-- CPU: Multi-core processor recommended
-
-## 📋 Data Format
-
-The dashboard currently supports:
-- PNG images
-- JPG/JPEG images
-- DICOM support coming soon
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Streamlit · Plotly · NiBabel · SciPy · NumPy · pandas · huggingface_hub
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+The code is MIT licensed; see [LICENSE](LICENSE). The imaging data stay under their own licences, listed above, and are for non-commercial research use.
 
 ## 📞 Contact
 
 Md Abu Sufian - [LinkedIn](https://www.linkedin.com/in/tacticalbusinessintelligence/) | [Google Scholar](https://scholar.google.com/citations?user=8ozStcUAAAAJ&hl=en) | [GitHub](https://github.com/datascintist-abusufian)
 
-Project link: https://github.com/datascintist-abusufian/medical-image-analysis
+## 🔄 Version history
 
-## 🙏 Acknowledgments
-
-- Being developed to support evaluation of the TriFuse-SRNet segmentation work in [triFuse-pytorch](https://github.com/datascintist-abusufian/triFuse-pytorch)
-- Metric definitions follow standard practice for medical image segmentation evaluation (Dice, IoU, Hausdorff distance)
-- Built with Streamlit, Plotly, OpenCV, NumPy and Pandas
-
-## 🔄 Updates & Version History
-
-- v1.0.0 (Current)
-  - Initial release
-  - Basic image analysis functionality
-  - Advanced visualization features
+- **v2.0.0**: 4D cine MRI from ACDC and CMR-MULTI, 4D viewer, cardiac function, and metrics computed from real mask pairs, replacing the simulated values of v1.
+- **v1.0.0**: prototype dashboard with simulated metrics.
 
 ## 📝 Citation
 
-If you use this software in your research, please cite:
+If you use this software, please cite it and the datasets above:
 
 ```bibtex
 @software{sufian_medical_image_analysis,
   author = {Sufian, Md Abu},
-  title  = {Medical Image Analysis Dashboard},
-  year   = {2024},
+  title  = {4D Cardiac MRI Analysis Dashboard},
+  year   = {2026},
   url    = {https://github.com/datascintist-abusufian/medical-image-analysis}
 }
 ```
 
 ## ⚠️ Disclaimer
 
-This software is for research and educational purposes only. Not intended for clinical use or medical diagnosis.
+For research and education only. Not for clinical use or medical diagnosis.
