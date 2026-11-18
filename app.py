@@ -253,6 +253,17 @@ def orient(a):
     return np.swapaxes(a, 0, 1)
 
 
+def metric_row(items):
+    """Metric cards that wrap onto new rows instead of truncating in narrow windows."""
+    cells = "".join(
+        "<div style='flex:1 1 150px;padding:6px 12px;border:1px solid rgba(128,128,128,.3);"
+        "border-radius:8px'><div style='font-size:.8rem;opacity:.7'>" + str(k) + "</div>"
+        "<div style='font-size:1.3rem;font-weight:600'>" + str(v) + "</div></div>"
+        for k, v in items)
+    st.markdown("<div style='display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 10px'>" + cells + "</div>",
+                unsafe_allow_html=True)
+
+
 def show_image(rgb, caption):
     st.image(rgb, caption=caption, width="stretch", clamp=True)
 
@@ -351,15 +362,13 @@ def sidebar():
 def header(source, case, data):
     x, y, s, t = data["img"].shape
     sp = data["spacing"]
-    c1, c2, c3, c4 = st.columns(4)
     if source == "ACDC":
-        c1.metric("Patient", case["id"])
-        c2.metric("Diagnosis", case["group"], ACDC_GROUPS[case["group"]], delta_color="off")
+        items = [("Patient", case["id"]), ("Diagnosis", f"{case['group']} – {ACDC_GROUPS[case['group']]}")]
     else:
-        c1.metric("Patient", f"CINE_SAX_{case['id']:03d}")
-        c2.metric("Reported LVEF", f"{case['lvef']:.1f}%")
-    c3.metric("4D size (x·y·slices·frames)", f"{x}·{y}·{s}·{t}")
-    c4.metric("Voxel (mm)", f"{sp[0]:.2f}·{sp[1]:.2f}·{sp[2]:.1f}")
+        items = [("Patient", f"CINE_SAX_{case['id']:03d}"), ("Reported LVEF", f"{case['lvef']:.1f}%")]
+    items += [("4D size (x·y·slices·frames)", f"{x}·{y}·{s}·{t}"),
+              ("Voxel (mm)", f"{sp[0]:.2f} × {sp[1]:.2f} × {sp[2]:.1f}")]
+    metric_row(items)
 
 
 def tab_viewer(data, labels, show, alpha):
@@ -410,13 +419,14 @@ def tab_function(source, case, data, labels):
             hi, lo = v_ed[name], v_es[name]
         return (hi - lo) / hi * 100 if hi else np.nan
 
-    c = st.columns(6)
-    c[0].metric("LV EDV", f"{v_ed['LV cavity']:.0f} mL")
-    c[1].metric("LV ESV", f"{v_es['LV cavity']:.0f} mL")
-    c[2].metric("LV SV", f"{v_ed['LV cavity'] - v_es['LV cavity']:.0f} mL")
-    c[3].metric("LVEF (from masks)", f"{ef('LV cavity'):.1f}%")
-    c[4].metric("RVEF (from masks)", f"{ef('RV cavity'):.1f}%")
-    c[5].metric("LV mass (ED)", f"{v_ed['Myocardium'] * MYO_DENSITY:.0f} g")
+    metric_row([
+        ("LV EDV", f"{v_ed['LV cavity']:.0f} mL"),
+        ("LV ESV", f"{v_es['LV cavity']:.0f} mL"),
+        ("LV SV", f"{v_ed['LV cavity'] - v_es['LV cavity']:.0f} mL"),
+        ("LVEF (from masks)", f"{ef('LV cavity'):.1f}%"),
+        ("RVEF (from masks)", f"{ef('RV cavity'):.1f}%"),
+        ("LV mass (ED)", f"{v_ed['Myocardium'] * MYO_DENSITY:.0f} g"),
+    ])
 
     if source == "ACDC":
         bsa = np.sqrt(case["height"] * case["weight"] / 3600)
@@ -494,16 +504,16 @@ def tab_metrics(source, data, labels, pred_mode, uploaded):
     head = res[(res.Structure == "LV cavity") & (res.Phase == "ED")]
     if not head.empty:
         h = head.iloc[0]
-        c = st.columns(4)
-        c[0].metric("Dice (LV, ED)", f"{h['Dice']:.3f}")
-        c[1].metric("IoU (LV, ED)", f"{h['IoU']:.3f}")
-        c[2].metric("HD95 (LV, ED)", f"{h['HD95 (mm)']:.1f} mm")
-        c[3].metric("Volume error (LV, ED)", f"{h['Volume error (mL)']:+.1f} mL")
-        c = st.columns(4)
-        c[0].metric("Sensitivity", f"{h['Sensitivity']:.3f}")
-        c[1].metric("Specificity", f"{h['Specificity']:.4f}")
-        c[2].metric("Precision", f"{h['Precision']:.3f}")
-        c[3].metric("ASSD", f"{h['ASSD (mm)']:.2f} mm")
+        metric_row([
+            ("Dice (LV, ED)", f"{h['Dice']:.3f}"),
+            ("IoU (LV, ED)", f"{h['IoU']:.3f}"),
+            ("HD95 (LV, ED)", f"{h['HD95 (mm)']:.1f} mm"),
+            ("Volume error (LV, ED)", f"{h['Volume error (mL)']:+.1f} mL"),
+            ("Sensitivity", f"{h['Sensitivity']:.3f}"),
+            ("Specificity", f"{h['Specificity']:.4f}"),
+            ("Precision", f"{h['Precision']:.3f}"),
+            ("ASSD", f"{h['ASSD (mm)']:.2f} mm"),
+        ])
 
     st.dataframe(res.round(3), hide_index=True, width="stretch")
 
