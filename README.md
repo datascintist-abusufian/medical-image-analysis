@@ -6,6 +6,12 @@ A Streamlit-based dashboard for medical image analysis with advanced visualizati
 
 > **Current status - prototype.** The interface, layout and visualisations are in place, but the metric values are **simulated placeholders** (`ImageProcessor.calculate_metrics` in `app.py` generates them around a fixed baseline with random noise). They are not computed from the uploaded image or from TriFuse-SRNet outputs. Computing the metrics from predicted and ground-truth mask pairs is the next step.
 
+## Block diagram
+
+![Block diagram: image upload, loading and settings, quality metrics, analysis tabs, interactive dashboard output](docs/figures/dashboard_block_diagram.png)
+
+**Figure 1.** How an image moves through `app.py`: upload (PNG/JPG; sample cardiac MRI slices from `images.zip`) → load and sidebar settings → eight segmentation-quality metrics → four analysis tabs (uncertainty, sensitivity, regional, performance radar) → interactive dashboard. The dashed row shows the planned step: computing the metrics from a TriFuse-SRNet predicted mask and its ground-truth mask, replacing the simulated values.
+
 ## 🌟 Features
 
 - **Image Analysis**
