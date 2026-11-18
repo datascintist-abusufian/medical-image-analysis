@@ -117,7 +117,9 @@ class ImageProcessor:
             "F1 Score": min(1.0, base_score + 0.015),
             "Hausdorff Distance": max(0, 3.2 + np.random.normal(0, 0.1))
         }
-        class DashboardVisualizer:
+
+
+class DashboardVisualizer:
     @staticmethod
     def display_metrics(metrics):
         """Display metrics in columns"""
