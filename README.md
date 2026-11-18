@@ -22,16 +22,20 @@ CMR-MULTI stores each cine series as slices × frames stacked along one axis. Th
 
 ## 🌟 Features
 
-- **4D viewer**: pick a patient, browse slices and cardiac phases, play the cine loop of any slice, and see all slices at once with LV/myocardium/RV overlays.
-- **Cardiac function from the masks**: LV and RV EDV, ESV, stroke volume and EF; LV mass (1.05 g/mL); BSA-indexed values for ACDC; volume–time curves over the whole heartbeat for CMR-MULTI.
-- **Segmentation metrics computed from mask pairs**: Dice, IoU, sensitivity, specificity, precision, volume error, HD95 and ASSD (3D, in mm, using the true voxel spacing).
-  - **Regional**: Dice per slice from base to apex.
-  - **Uncertainty**: bootstrap 95% confidence interval of per-slice Dice.
-  - **Temporal**: Dice across the cardiac cycle when every frame is labelled.
-  - CSV export.
-- **What gets evaluated**
-  - *Upload my predicted mask*: a NIfTI mask for one frame (3D), for all frames (4D), or, for CMR-MULTI, in the original stacked layout. Use the dataset's label IDs, which the app lists in the sidebar.
-  - *Classical baseline*: Otsu threshold inside a window around the expert LV. It demonstrates the metrics and is not an automatic model.
+| Section | What it does | Method / reference |
+|---|---|---|
+| **4D viewer** | Browse slices and cardiac phases, play the cine loop of any slice, see all slices with LV/myocardium/RV overlays | – |
+| **Cardiac function** | LV/RV EDV, ESV, SV, EF; LV mass; BSA-indexed values (ACDC); volume–time curves (CMR-MULTI) | voxel counting, Mosteller BSA |
+| **Segmentation metrics** | Dice, IoU, sensitivity, specificity, precision, volume error, HD95, ASSD; per-slice, bootstrap and temporal analysis; CSV export | uploaded NIfTI mask or classical baseline |
+| **3D/4D reconstruction** | Triangle meshes of LV, myocardium and RV at any frame, 4D heartbeat animation, surface area and sphericity | shape-based interpolation (Raya & Udupa 1990) + marching cubes; cf. MeshHeart (Qiao et al., *Nat Mach Intell* 2025) |
+| **Regional (AHA)** | Wall thickness at ED and ES and systolic thickening in the 16 AHA segments, as bullseye plots; count of segments > 15 mm | RV-insertion-referenced segmentation as in the Imperial UK Biobank pipeline (Bai et al. 2018, 2020) |
+| **Motion & strain** | Dense TV-L1 optical-flow tracking, composed displacement fields, ED→all-frame label propagation, Dice of the tracked masks against held-out expert masks, global circumferential and radial strain | Zach et al. 2007; registration-based tracking as in UK Biobank strain analysis |
+| **Diagnosis** | Random forest on 13 segmentation-derived features for the 5 ACDC groups: 94% 5-fold CV on the 100 training patients, 90% on the 50 held-out test patients; PCA map; rule-based ACDC criteria for comparison | Isensee et al. 2017; Khened et al., *MedIA* 2019 |
+| **QC & report** | Anatomical plausibility checks and a downloadable structured report with ACDC-criterion flags | quality-control idea from Oxford's 2026 accountable-AI CMR DPhil |
+| **Imaging guide** | How cine CMR is acquired and read, what each measurement means, ACDC criteria, reference-range sources, pitfalls | Kawel-Boehm et al., *JCMR* 2020 |
+| **Research & data** | Current Oxford DPhil and Imperial projects mapped to the methods implemented here; data sources and licences | – |
+
+`data/acdc_features.csv` is computed from the expert masks by `scripts/build_acdc_features.py` and holds features only, no images.
 
 ## 🚀 Quick start
 
@@ -49,17 +53,21 @@ Each case downloads once (about 5–20 MB) and is then cached in `/tmp/hf_cardia
 
 ```
 medical-image-analysis/
-├── app.py                        # Streamlit app
+├── app.py                        # Streamlit app: data loading, viewer, function, metrics
+├── advanced.py                   # 3D/4D, AHA, motion & strain, diagnosis, QC & report, guide
+├── analysis.py                   # algorithms (meshes, AHA thickness, TV-L1 tracking, strain, QC, features)
+├── scripts/build_acdc_features.py
 ├── requirements.txt
 ├── data/
 │   ├── acdc_catalog.csv          # ACDC case list (no images)
-│   └── cmr_multi_catalog.csv     # CMR-MULTI case list (no images)
+│   ├── cmr_multi_catalog.csv     # CMR-MULTI case list (no images)
+│   └── acdc_features.csv         # diagnostic features from expert masks (no images)
 └── docs/
 ```
 
 ## 🛠️ Built with
 
-Streamlit · Plotly · NiBabel · SciPy · NumPy · pandas · huggingface_hub
+Streamlit · Plotly · NiBabel · SciPy · scikit-image · scikit-learn · NumPy · pandas · huggingface_hub
 
 ## 📄 License
 
@@ -71,6 +79,7 @@ Md Abu Sufian - [LinkedIn](https://www.linkedin.com/in/tacticalbusinessintellige
 
 ## 🔄 Version history
 
+- **v2.1.0**: 3D/4D mesh reconstruction, AHA regional analysis, TV-L1 motion tracking and strain, ACDC diagnosis model, QC and automated report, imaging guide, research context.
 - **v2.0.0**: 4D cine MRI from ACDC and CMR-MULTI, 4D viewer, cardiac function, and metrics computed from real mask pairs, replacing the simulated values of v1.
 - **v1.0.0**: prototype dashboard with simulated metrics.
 
