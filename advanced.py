@@ -89,6 +89,21 @@ def _mesh_traces(lab3d, labels, spacing, colours, opacity, step=1):
     return traces
 
 
+def _scene(traces, pad=5.0):
+    """Tight 3D scene around the meshes (Plotly's autorange can leave the heart tiny)."""
+    if not traces:
+        return dict(aspectmode="data")
+    lo = np.min([[np.min(t.x), np.min(t.y), np.min(t.z)] for t in traces], axis=0) - pad
+    hi = np.max([[np.max(t.x), np.max(t.y), np.max(t.z)] for t in traces], axis=0) + pad
+    span = hi - lo
+    ratio = span / span.max()
+    ax = dict(visible=False)
+    return dict(xaxis=dict(range=[lo[0], hi[0]], **ax), yaxis=dict(range=[lo[1], hi[1]], **ax),
+                zaxis=dict(range=[lo[2], hi[2]], **ax), aspectmode="manual",
+                aspectratio=dict(x=ratio[0], y=ratio[1], z=ratio[2]),
+                camera=dict(eye=dict(x=1.2, y=1.2, z=0.8)))
+
+
 def section_reconstruction(source, case, data, labels, colours):
     st.subheader("3D / 4D surface reconstruction")
     st.caption("Short-axis slices are 5–10 mm apart, so each mask is first upsampled through the "
@@ -107,9 +122,9 @@ def section_reconstruction(source, case, data, labels, colours):
                                                          " (ES)" if f == data["es"] + 1 else "")) - 1
     myo_op = c2.slider("Myocardium opacity", 0.1, 1.0, 0.35, 0.05)
     op = {"LV cavity": 1.0, "Myocardium": myo_op, "RV cavity": 0.85}
-    fig = go.Figure(_mesh_traces(src[..., fr], labels, data["spacing"], colours, op))
-    fig.update_layout(scene=dict(aspectmode="data", xaxis_visible=False, yaxis_visible=False,
-                                 zaxis_visible=False), height=560, margin=dict(l=0, r=0, t=0, b=0),
+    traces = _mesh_traces(src[..., fr], labels, data["spacing"], colours, op)
+    fig = go.Figure(traces)
+    fig.update_layout(scene=_scene(traces), height=560, margin=dict(l=0, r=0, t=0, b=0),
                       legend=dict(orientation="h"))
     st.plotly_chart(fig, width="stretch")
     if lab4d is None:
@@ -126,8 +141,7 @@ def section_reconstruction(source, case, data, labels, colours):
                                                       op2, step=3), name=str(f + 1)) for f in sel]
                 anim = go.Figure(data=fr_objs[0].data, frames=fr_objs)
                 anim.update_layout(
-                    scene=dict(aspectmode="data", xaxis_visible=False, yaxis_visible=False,
-                               zaxis_visible=False),
+                    scene=_scene([t for fo in fr_objs for t in fo.data]),
                     height=560, margin=dict(l=0, r=0, t=0, b=0),
                     updatemenus=[dict(type="buttons", showactive=False, x=0.05, y=0.05,
                                       buttons=[dict(label="▶ Play", method="animate",
