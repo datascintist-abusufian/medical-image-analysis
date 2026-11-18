@@ -179,10 +179,12 @@ def bullseye(values, title, colorscale, cmin, cmax, unit):
             showlegend=False))
     for s, th in AHA_THETA.items():
         r = 2.5 if s <= 6 else 1.5 if s <= 12 else 0.55
-        fig.add_trace(go.Scatterpolar(r=[r], theta=[th], mode="text", text=[str(s)],
-                                      textfont=dict(color="black", size=11), showlegend=False,
+        v = values.get(s, np.nan)
+        label = f"{s}<br>{v:.0f}" if v == v else str(s)
+        fig.add_trace(go.Scatterpolar(r=[r], theta=[th], mode="text", text=[label],
+                                      textfont=dict(color="black", size=12), showlegend=False,
                                       hoverinfo="skip"))
-    fig.update_layout(title=title, height=380, margin=dict(l=20, r=20, t=50, b=20),
+    fig.update_layout(title=title, height=460, margin=dict(l=20, r=20, t=50, b=20),
                       polar=dict(radialaxis=dict(visible=False, range=[0, 3]),
                                  angularaxis=dict(visible=False, direction="counterclockwise",
                                                   rotation=0)))
@@ -210,13 +212,12 @@ def section_regional(source, case, data, labels, metric_row):
                 ("Mean WT (ED)", f"{np.nanmean(list(wt_ed.values())):.1f} mm"),
                 ("Segments > 15 mm", f"{n15}"),
                 ("Mean systolic thickening", f"{np.nanmean(list(thick.values())):.0f}%")])
-    c1, c2, c3 = st.columns(3)
-    with c1:
-        st.plotly_chart(bullseye(wt_ed, "Wall thickness at ED", "YlOrRd", 3, 20, "mm"), width="stretch")
-    with c2:
-        st.plotly_chart(bullseye(wt_es, "Wall thickness at ES", "YlOrRd", 3, 25, "mm"), width="stretch")
-    with c3:
-        st.plotly_chart(bullseye(thick, "Systolic thickening", "RdBu", -20, 120, "%"), width="stretch")
+    maps = {"Wall thickness at ED": (wt_ed, "YlOrRd", 3, 20, "mm"),
+            "Wall thickness at ES": (wt_es, "YlOrRd", 3, 25, "mm"),
+            "Systolic thickening": (thick, "RdBu", -20, 120, "%")}
+    which = st.radio("Bullseye map", list(maps), horizontal=True)
+    vals, cs, lo, hi, unit = maps[which]
+    st.plotly_chart(bullseye(vals, which, cs, lo, hi, unit), width="stretch")
     if not oriented:
         st.caption("ACDC files carry no patient orientation, so segment names assume the standard "
                    "short-axis view (anterior at the top). The thickness values do not depend on "
