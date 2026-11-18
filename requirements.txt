@@ -7,3 +7,5 @@ requests
 nibabel
 scipy
 huggingface_hub
+scikit-image
+scikit-learn
