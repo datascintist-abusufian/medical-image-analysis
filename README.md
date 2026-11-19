@@ -4,6 +4,10 @@ A Streamlit dashboard for exploring public **4D cine cardiac MRI** (3D + time) w
 
 **Live app:** https://abusufian-medical-image-analysis-pro.streamlit.app/
 
+![Block diagram of the 4D cardiac MRI analysis dashboard](docs/figures/dashboard_block_diagram.svg)
+
+**Figure 1 | 4D cardiac MRI analysis dashboard.** **a**, Pipeline from the public datasets (ACDC, CMR-MULTI) and optional predicted masks, through loading and label harmonisation, to the 4D image and label volumes and four groups of analyses shown in the dashboard. **b**, Geometry and motion: shape-based interpolation and marching cubes for 3D/4D meshes, RV-insertion-referenced AHA 16-segment wall thickness, and TV-L1 optical-flow tracking with composed displacements for label propagation and global strain. **c**, Evaluation and diagnosis: segmentation metrics with bootstrap confidence intervals, a random-forest ACDC classifier (94% 5-fold CV on 100 training patients, 90% on 50 held-out patients, vs 72% for the published ACDC rules), and anatomical quality-control checks.
+
 > **Related project:** this dashboard is the evaluation companion to [triFuse-pytorch](https://github.com/datascintist-abusufian/triFuse-pytorch), the TriFuse-SRNet reference implementation for scribble-supervised cardiac MRI segmentation. Upload a predicted mask and it is scored against the expert masks.
 
 ## 🫀 Data
