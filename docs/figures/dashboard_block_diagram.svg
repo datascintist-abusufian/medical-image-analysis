@@ -1,0 +1,229 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="510pt" height="452pt" viewBox="0 0 510 452" font-family="Arial, Helvetica, 'Liberation Sans', sans-serif">
+<defs>
+<marker id="ah" viewBox="0 0 8 8" refX="7.2" refY="4" markerWidth="5.2" markerHeight="5.2" orient="auto">
+<path d="M0,0.6 L7.6,4 L0,7.4 z" fill="#5B6573"/></marker>
+<marker id="ahp" viewBox="0 0 8 8" refX="7.2" refY="4" markerWidth="5.2" markerHeight="5.2" orient="auto">
+<path d="M0,0.6 L7.6,4 L0,7.4 z" fill="#674A99"/></marker>
+<marker id="ahs" viewBox="0 0 8 8" refX="0.8" refY="4" markerWidth="5.2" markerHeight="5.2" orient="auto">
+<path d="M8,0.6 L0.4,4 L8,7.4 z" fill="#5B6573"/></marker>
+</defs>
+<rect width="510" height="452" fill="#fff"/>
+<text x="0" y="10" font-size="8.5" font-weight="bold" fill="#000">a</text>
+<text x="8" y="22" font-size="6" fill="#5B6573" letter-spacing="0.4">DATA SOURCES</text>
+<text x="114" y="22" font-size="6" fill="#5B6573" letter-spacing="0.4">INGESTION</text>
+<text x="220" y="22" font-size="6" fill="#5B6573" letter-spacing="0.4">4D REPRESENTATION</text>
+<text x="318" y="22" font-size="6" fill="#5B6573" letter-spacing="0.4">ANALYSES</text>
+<text x="446" y="22" font-size="6" fill="#5B6573" letter-spacing="0.4">OUTPUTS</text>
+<rect x="8" y="28" width="94" height="48" rx="3" fill="#EEF0F3" stroke="#5B6573" stroke-width="0.8"/>
+<text xml:space="preserve" x="14.00" y="39.00" font-size="7.2" font-weight="bold" text-anchor="start" fill="#5B6573"><tspan>ACDC (MICCAI 2017)</tspan></text>
+<text xml:space="preserve" x="14.00" y="49.00" font-size="6.3" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>150 patients, 5 groups</tspan></text>
+<text xml:space="preserve" x="14.00" y="57.00" font-size="6.3" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>Masks at ED and ES</tspan></text>
+<rect x="8" y="82" width="94" height="48" rx="3" fill="#EEF0F3" stroke="#5B6573" stroke-width="0.8"/>
+<text xml:space="preserve" x="14.00" y="93.00" font-size="6.5" font-weight="bold" text-anchor="start" fill="#5B6573"><tspan>CMR-MULTI (MICCAI 2026)</tspan></text>
+<text xml:space="preserve" x="14.00" y="103.00" font-size="6.3" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>105 multi-centre cases</tspan></text>
+<text xml:space="preserve" x="14.00" y="111.00" font-size="6.3" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>Masks on every frame</tspan></text>
+<rect x="8" y="136" width="94" height="48" rx="3" fill="#EEF0F3" stroke="#5B6573" stroke-width="0.8" stroke-dasharray="3 2"/>
+<text xml:space="preserve" x="14.00" y="147.00" font-size="7.2" font-weight="bold" text-anchor="start" fill="#5B6573"><tspan>Predicted mask</tspan></text>
+<text xml:space="preserve" x="14.00" y="157.00" font-size="6.3" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>User NIfTI upload,</tspan></text>
+<text xml:space="preserve" x="14.00" y="165.00" font-size="6.3" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>e.g. TriFuse-SRNet</tspan></text>
+<rect x="114" y="28" width="94" height="156" rx="3" fill="#E3EDF8" stroke="#2F6DB0" stroke-width="0.8"/>
+<text xml:space="preserve" x="120.00" y="39.00" font-size="7.2" font-weight="bold" text-anchor="start" fill="#2F6DB0"><tspan>Load and harmonise</tspan></text>
+<text xml:space="preserve" x="120.00" y="49.60" font-size="6.3" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>Hugging Face download,</tspan></text>
+<text xml:space="preserve" x="120.00" y="58.20" font-size="6.3" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>   local cache</tspan></text>
+<text xml:space="preserve" x="120.00" y="66.80" font-size="6.3" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>NIfTI read (nibabel)</tspan></text>
+<text xml:space="preserve" x="120.00" y="75.40" font-size="6.3" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>Frame count for stacked</tspan></text>
+<text xml:space="preserve" x="120.00" y="84.00" font-size="6.3" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>   series: max drop in</tspan></text>
+<text xml:space="preserve" x="120.00" y="92.60" font-size="6.3" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>   neighbour correlation</tspan></text>
+<text xml:space="preserve" x="120.00" y="101.20" font-size="6.3" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>Labels → LV, Myo, RV</tspan></text>
+<text xml:space="preserve" x="120.00" y="109.80" font-size="6.3" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>Voxel spacing (mm)</tspan></text>
+<text xml:space="preserve" x="120.00" y="118.40" font-size="6.3" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>ED / ES frame indices</tspan></text>
+<text xml:space="preserve" x="120.00" y="127.00" font-size="6.3" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>Intensity → uint8</tspan></text>
+<rect x="220" y="28" width="86" height="156" rx="3" fill="#FBE6E8" stroke="#B8323F" stroke-width="1.4"/>
+<text xml:space="preserve" x="226.00" y="40.00" font-size="7.6" font-weight="bold" text-anchor="start" fill="#B8323F"><tspan>4D cine CMR</tspan></text>
+<text xml:space="preserve" x="226.00" y="52.00" font-size="6.6" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan font-style="italic">I</tspan><tspan>(</tspan><tspan font-style="italic">x</tspan><tspan>, </tspan><tspan font-style="italic">y</tspan><tspan>, </tspan><tspan font-style="italic">z</tspan><tspan>, </tspan><tspan font-style="italic">t</tspan><tspan>)</tspan></text>
+<text xml:space="preserve" x="226.00" y="61.00" font-size="5.9" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan font-style="italic">L</tspan><tspan>(</tspan><tspan font-style="italic">x</tspan><tspan>, </tspan><tspan font-style="italic">y</tspan><tspan>, </tspan><tspan font-style="italic">z</tspan><tspan>, </tspan><tspan font-style="italic">t</tspan><tspan>) ∈ {LV, Myo, RV}</tspan></text>
+<rect x="232.4" y="79.2" width="14" height="14" rx="1" fill="#fff" stroke="#B8323F" stroke-width="0.5" opacity="0.35"/>
+<rect x="230.2" y="83.6" width="14" height="14" rx="1" fill="#fff" stroke="#B8323F" stroke-width="0.5" opacity="0.6"/>
+<rect x="228.0" y="88.0" width="14" height="14" rx="1" fill="#fff" stroke="#B8323F" stroke-width="0.5" opacity="1"/>
+<circle cx="235" cy="95" r="5.60" fill="#457B9D" opacity="0.85"/>
+<circle cx="235" cy="95" r="4.00" fill="#E63946"/>
+<text xml:space="preserve" x="235.00" y="112.00" font-size="5" font-weight="normal" text-anchor="middle" fill="#5B6573"><tspan>ED</tspan></text>
+<rect x="250.4" y="79.2" width="14" height="14" rx="1" fill="#fff" stroke="#B8323F" stroke-width="0.5" opacity="0.35"/>
+<rect x="248.2" y="83.6" width="14" height="14" rx="1" fill="#fff" stroke="#B8323F" stroke-width="0.5" opacity="0.6"/>
+<rect x="246.0" y="88.0" width="14" height="14" rx="1" fill="#fff" stroke="#B8323F" stroke-width="0.5" opacity="1"/>
+<circle cx="253" cy="95" r="4.50" fill="#457B9D" opacity="0.85"/>
+<circle cx="253" cy="95" r="2.90" fill="#E63946"/>
+<text xml:space="preserve" x="253.00" y="112.00" font-size="5" font-weight="normal" text-anchor="middle" fill="#5B6573"></text>
+<rect x="268.4" y="79.2" width="14" height="14" rx="1" fill="#fff" stroke="#B8323F" stroke-width="0.5" opacity="0.35"/>
+<rect x="266.2" y="83.6" width="14" height="14" rx="1" fill="#fff" stroke="#B8323F" stroke-width="0.5" opacity="0.6"/>
+<rect x="264.0" y="88.0" width="14" height="14" rx="1" fill="#fff" stroke="#B8323F" stroke-width="0.5" opacity="1"/>
+<circle cx="271" cy="95" r="3.80" fill="#457B9D" opacity="0.85"/>
+<circle cx="271" cy="95" r="2.20" fill="#E63946"/>
+<text xml:space="preserve" x="271.00" y="112.00" font-size="5" font-weight="normal" text-anchor="middle" fill="#5B6573"><tspan>ES</tspan></text>
+<rect x="286.4" y="79.2" width="14" height="14" rx="1" fill="#fff" stroke="#B8323F" stroke-width="0.5" opacity="0.35"/>
+<rect x="284.2" y="83.6" width="14" height="14" rx="1" fill="#fff" stroke="#B8323F" stroke-width="0.5" opacity="0.6"/>
+<rect x="282.0" y="88.0" width="14" height="14" rx="1" fill="#fff" stroke="#B8323F" stroke-width="0.5" opacity="1"/>
+<circle cx="289" cy="95" r="5.00" fill="#457B9D" opacity="0.85"/>
+<circle cx="289" cy="95" r="3.40" fill="#E63946"/>
+<text xml:space="preserve" x="289.00" y="112.00" font-size="5" font-weight="normal" text-anchor="middle" fill="#5B6573"></text>
+<line x1="228" y1="120" x2="300" y2="120" stroke="#5B6573" stroke-width="0.9" marker-end="url(#ah)"/>
+<text xml:space="preserve" x="264.00" y="128.00" font-size="5.4" font-weight="normal" text-anchor="middle" fill="#5B6573"><tspan>time </tspan><tspan font-style="italic">t</tspan><tspan> (frames)</tspan></text>
+<text xml:space="preserve" x="228.00" y="76.00" font-size="5.4" font-weight="normal" text-anchor="start" fill="#5B6573"><tspan>slice stack </tspan><tspan font-style="italic">z</tspan><tspan> per frame</tspan></text>
+<text xml:space="preserve" x="228.00" y="142.00" font-size="5.2" font-weight="normal" text-anchor="start" fill="#5B6573"><tspan>LV (red), myocardium (blue)</tspan></text>
+<text xml:space="preserve" x="226.00" y="172.00" font-size="5.6" font-weight="normal" text-anchor="start" fill="#5B6573"><tspan>Spacing-aware, mm units</tspan></text>
+<rect x="318" y="28" width="116" height="36" rx="3" fill="#E1F2EE" stroke="#1E7F69" stroke-width="0.8"/>
+<text xml:space="preserve" x="324.00" y="39.00" font-size="6.6" font-weight="bold" text-anchor="start" fill="#1E7F69"><tspan>Cardiac function and metrics</tspan></text>
+<text xml:space="preserve" x="324.00" y="48.20" font-size="5.8" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>EDV, ESV, SV, EF, LV mass; Dice,</tspan></text>
+<text xml:space="preserve" x="324.00" y="55.40" font-size="5.8" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>IoU, HD95, ASSD, bootstrap CI</tspan></text>
+<rect x="318" y="68" width="116" height="36" rx="3" fill="#FCEFD9" stroke="#B87203" stroke-width="0.8"/>
+<text xml:space="preserve" x="324.00" y="79.00" font-size="6.6" font-weight="bold" text-anchor="start" fill="#B87203"><tspan>Geometry: 3D/4D mesh, AHA</tspan></text>
+<text xml:space="preserve" x="324.00" y="88.20" font-size="5.8" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>SDF interpolation, marching cubes;</tspan></text>
+<text xml:space="preserve" x="324.00" y="95.40" font-size="5.8" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>16-segment wall thickness</tspan></text>
+<rect x="318" y="108" width="116" height="36" rx="3" fill="#ECE6F5" stroke="#674A99" stroke-width="0.8"/>
+<text xml:space="preserve" x="324.00" y="119.00" font-size="6.6" font-weight="bold" text-anchor="start" fill="#674A99"><tspan>Motion and strain</tspan></text>
+<text xml:space="preserve" x="324.00" y="128.20" font-size="5.8" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>TV-L1 flow, label propagation,</tspan></text>
+<text xml:space="preserve" x="324.00" y="135.40" font-size="5.8" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>global circumferential/radial strain</tspan></text>
+<rect x="318" y="148" width="116" height="36" rx="3" fill="#E6F0F7" stroke="#245B84" stroke-width="0.8"/>
+<text xml:space="preserve" x="324.00" y="159.00" font-size="6.6" font-weight="bold" text-anchor="start" fill="#245B84"><tspan>Diagnosis and quality control</tspan></text>
+<text xml:space="preserve" x="324.00" y="168.20" font-size="5.8" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>Random forest, 13 features, 5 groups;</tspan></text>
+<text xml:space="preserve" x="324.00" y="175.40" font-size="5.8" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>5 anatomical plausibility checks</tspan></text>
+<rect x="446" y="28" width="62" height="156" rx="3" fill="#E9EBEE" stroke="#2C333C" stroke-width="0.8"/>
+<text xml:space="preserve" x="452.00" y="39.00" font-size="6.8" font-weight="bold" text-anchor="start" fill="#2C333C"><tspan>Dashboard</tspan></text>
+<text xml:space="preserve" x="452.00" y="49.60" font-size="6.0" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>10 sections</tspan></text>
+<text xml:space="preserve" x="452.00" y="58.20" font-size="6.0" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>4D cine viewer</tspan></text>
+<text xml:space="preserve" x="452.00" y="66.80" font-size="6.0" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>Volume–time</tspan></text>
+<text xml:space="preserve" x="452.00" y="75.40" font-size="6.0" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>   curves</tspan></text>
+<text xml:space="preserve" x="452.00" y="84.00" font-size="6.0" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>Meshes, 4D</tspan></text>
+<text xml:space="preserve" x="452.00" y="92.60" font-size="6.0" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>   animation</tspan></text>
+<text xml:space="preserve" x="452.00" y="101.20" font-size="6.0" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>AHA bullseye</tspan></text>
+<text xml:space="preserve" x="452.00" y="109.80" font-size="6.0" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>Strain curves</tspan></text>
+<text xml:space="preserve" x="452.00" y="118.40" font-size="6.0" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>Markdown</tspan></text>
+<text xml:space="preserve" x="452.00" y="127.00" font-size="6.0" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>   report, CSV</tspan></text>
+<line x1="102" y1="52" x2="114" y2="52" stroke="#5B6573" stroke-width="0.9" marker-end="url(#ah)"/>
+<line x1="102" y1="106" x2="114" y2="106" stroke="#5B6573" stroke-width="0.9" marker-end="url(#ah)"/>
+<line x1="102" y1="160" x2="220" y2="160" stroke="#5B6573" stroke-width="0.9" marker-end="url(#ah)" stroke-dasharray="2.5 2"/>
+<text xml:space="preserve" x="161.00" y="157.00" font-size="5.2" font-weight="normal" text-anchor="middle" fill="#5B6573"><tspan>scored against expert</tspan></text>
+<line x1="208" y1="78" x2="220" y2="78" stroke="#5B6573" stroke-width="0.9" marker-end="url(#ah)"/>
+<line x1="306" y1="46" x2="318" y2="46" stroke="#5B6573" stroke-width="0.9" marker-end="url(#ah)"/>
+<line x1="434" y1="46" x2="446" y2="46" stroke="#5B6573" stroke-width="0.9" marker-end="url(#ah)"/>
+<line x1="306" y1="86" x2="318" y2="86" stroke="#5B6573" stroke-width="0.9" marker-end="url(#ah)"/>
+<line x1="434" y1="86" x2="446" y2="86" stroke="#5B6573" stroke-width="0.9" marker-end="url(#ah)"/>
+<line x1="306" y1="126" x2="318" y2="126" stroke="#5B6573" stroke-width="0.9" marker-end="url(#ah)"/>
+<line x1="434" y1="126" x2="446" y2="126" stroke="#5B6573" stroke-width="0.9" marker-end="url(#ah)"/>
+<line x1="306" y1="166" x2="318" y2="166" stroke="#5B6573" stroke-width="0.9" marker-end="url(#ah)"/>
+<line x1="434" y1="166" x2="446" y2="166" stroke="#5B6573" stroke-width="0.9" marker-end="url(#ah)"/>
+<path d="M376,184 L376,194 L263,194 L263,185.5" fill="none" stroke="#674A99" stroke-width="0.9" marker-end="url(#ahp)" stroke-dasharray="2.5 2"/>
+<text xml:space="preserve" x="320.00" y="202.00" font-size="5.8" font-weight="normal" text-anchor="middle" fill="#674A99"><tspan>tracked masks for every frame (ACDC)</tspan></text>
+<text xml:space="preserve" x="508.00" y="202.00" font-size="5.6" font-weight="normal" text-anchor="end" fill="#5B6573"><tspan>Research and education use only</tspan></text>
+<text x="0" y="224" font-size="8.5" font-weight="bold" fill="#000">b</text>
+<text x="14" y="224" font-size="6" fill="#5B6573" letter-spacing="0.4">GEOMETRY AND MOTION ANALYSIS</text>
+<rect x="14" y="232" width="292" height="58" rx="3" fill="#FCEFD9" stroke="#B87203" stroke-width="0.9"/>
+<text xml:space="preserve" x="20.00" y="243.00" font-size="6.9" font-weight="bold" text-anchor="start" fill="#B87203"><tspan>3D/4D reconstruction</tspan></text>
+<rect x="20" y="250" width="58" height="34" rx="2.5" fill="#fff" stroke="#B87203" stroke-width="0.8"/>
+<text xml:space="preserve" x="49.00" y="265.53" font-size="5.8" font-weight="normal" text-anchor="middle" fill="#1F2328"><tspan>Binary mask</tspan></text>
+<text xml:space="preserve" x="49.00" y="272.53" font-size="5.8" font-weight="normal" text-anchor="middle" fill="#1F2328"><tspan>stack per label</tspan></text>
+<line x1="78" y1="267" x2="85" y2="267" stroke="#5B6573" stroke-width="0.9" marker-end="url(#ah)"/>
+<rect x="85" y="250" width="58" height="34" rx="2.5" fill="#fff" stroke="#B87203" stroke-width="0.8"/>
+<text xml:space="preserve" x="114.00" y="265.53" font-size="5.8" font-weight="normal" text-anchor="middle" fill="#1F2328"><tspan>Signed distance</tspan></text>
+<text xml:space="preserve" x="114.00" y="272.53" font-size="5.8" font-weight="normal" text-anchor="middle" fill="#1F2328"><tspan>map in mm</tspan></text>
+<line x1="143" y1="267" x2="150" y2="267" stroke="#5B6573" stroke-width="0.9" marker-end="url(#ah)"/>
+<rect x="150" y="250" width="58" height="34" rx="2.5" fill="#fff" stroke="#B87203" stroke-width="0.8"/>
+<text xml:space="preserve" x="179.00" y="265.53" font-size="5.8" font-weight="normal" text-anchor="middle" fill="#1F2328"><tspan font-style="italic">z</tspan><tspan>-upsample, smooth;</tspan></text>
+<text xml:space="preserve" x="179.00" y="272.53" font-size="5.8" font-weight="normal" text-anchor="middle" fill="#1F2328"><tspan>marching cubes</tspan></text>
+<ellipse cx="239" cy="261" rx="11" ry="17" fill="#fff" stroke="#B87203" stroke-width="0.8"/>
+<ellipse cx="239" cy="250.80" rx="8.80" ry="2.20" fill="none" stroke="#B87203" stroke-width="0.4"/>
+<ellipse cx="239" cy="257.60" rx="10.78" ry="2.69" fill="none" stroke="#B87203" stroke-width="0.4"/>
+<ellipse cx="239" cy="264.40" rx="10.78" ry="2.69" fill="none" stroke="#B87203" stroke-width="0.4"/>
+<ellipse cx="239" cy="271.20" rx="8.80" ry="2.20" fill="none" stroke="#B87203" stroke-width="0.4"/>
+<ellipse cx="239" cy="261" rx="3.85" ry="17" fill="none" stroke="#B87203" stroke-width="0.4"/>
+<ellipse cx="239" cy="261" rx="7.70" ry="17" fill="none" stroke="#B87203" stroke-width="0.4"/>
+<text xml:space="preserve" x="239.00" y="286.00" font-size="5" font-weight="normal" text-anchor="middle" fill="#5B6573"><tspan>LV mesh</tspan></text>
+<rect x="14" y="296" width="292" height="58" rx="3" fill="#FCEFD9" stroke="#B87203" stroke-width="0.9"/>
+<text xml:space="preserve" x="20.00" y="307.00" font-size="6.9" font-weight="bold" text-anchor="start" fill="#B87203"><tspan>Regional wall thickness (AHA)</tspan></text>
+<rect x="20" y="314" width="58" height="34" rx="2.5" fill="#fff" stroke="#B87203" stroke-width="0.8"/>
+<text xml:space="preserve" x="49.00" y="329.53" font-size="5.8" font-weight="normal" text-anchor="middle" fill="#1F2328"><tspan>RV insertion</tspan></text>
+<text xml:space="preserve" x="49.00" y="336.53" font-size="5.8" font-weight="normal" text-anchor="middle" fill="#1F2328"><tspan>points</tspan></text>
+<line x1="78" y1="331" x2="85" y2="331" stroke="#5B6573" stroke-width="0.9" marker-end="url(#ah)"/>
+<rect x="85" y="314" width="58" height="34" rx="2.5" fill="#fff" stroke="#B87203" stroke-width="0.8"/>
+<text xml:space="preserve" x="114.00" y="329.53" font-size="5.8" font-weight="normal" text-anchor="middle" fill="#1F2328"><tspan>Basal / mid / apical</tspan></text>
+<text xml:space="preserve" x="114.00" y="336.53" font-size="5.8" font-weight="normal" text-anchor="middle" fill="#1F2328"><tspan>thirds, 6+6+4</tspan></text>
+<line x1="143" y1="331" x2="150" y2="331" stroke="#5B6573" stroke-width="0.9" marker-end="url(#ah)"/>
+<rect x="150" y="314" width="58" height="34" rx="2.5" fill="#fff" stroke="#B87203" stroke-width="0.8"/>
+<text xml:space="preserve" x="179.00" y="329.53" font-size="5.8" font-weight="normal" text-anchor="middle" fill="#1F2328"><tspan>Thickness ED, ES;</tspan></text>
+<text xml:space="preserve" x="179.00" y="336.53" font-size="5.8" font-weight="normal" text-anchor="middle" fill="#1F2328"><tspan>thickening</tspan></text>
+<path d="M248.00,308.41 A18,18 0 0 1 257.00,324.00 L251.50,324.00 A12.5,12.5 0 0 0 245.25,313.17 z" fill="#FBE3BC" stroke="#fff" stroke-width="0.6"/>
+<path d="M257.00,324.00 A18,18 0 0 1 248.00,339.59 L245.25,334.83 A12.5,12.5 0 0 0 251.50,324.00 z" fill="#FBE3BC" stroke="#fff" stroke-width="0.6"/>
+<path d="M248.00,339.59 A18,18 0 0 1 230.00,339.59 L232.75,334.83 A12.5,12.5 0 0 0 245.25,334.83 z" fill="#FBE3BC" stroke="#fff" stroke-width="0.6"/>
+<path d="M230.00,339.59 A18,18 0 0 1 221.00,324.00 L226.50,324.00 A12.5,12.5 0 0 0 232.75,334.83 z" fill="#FBE3BC" stroke="#fff" stroke-width="0.6"/>
+<path d="M221.00,324.00 A18,18 0 0 1 230.00,308.41 L232.75,313.17 A12.5,12.5 0 0 0 226.50,324.00 z" fill="#FBE3BC" stroke="#fff" stroke-width="0.6"/>
+<path d="M230.00,308.41 A18,18 0 0 1 248.00,308.41 L245.25,313.17 A12.5,12.5 0 0 0 232.75,313.17 z" fill="#FBE3BC" stroke="#fff" stroke-width="0.6"/>
+<path d="M245.25,313.17 A12.5,12.5 0 0 1 251.50,324.00 L246.40,324.00 A7.4,7.4 0 0 0 242.70,317.59 z" fill="#F6CB86" stroke="#fff" stroke-width="0.6"/>
+<path d="M251.50,324.00 A12.5,12.5 0 0 1 245.25,334.83 L242.70,330.41 A7.4,7.4 0 0 0 246.40,324.00 z" fill="#F6CB86" stroke="#fff" stroke-width="0.6"/>
+<path d="M245.25,334.83 A12.5,12.5 0 0 1 232.75,334.83 L235.30,330.41 A7.4,7.4 0 0 0 242.70,330.41 z" fill="#F6CB86" stroke="#fff" stroke-width="0.6"/>
+<path d="M232.75,334.83 A12.5,12.5 0 0 1 226.50,324.00 L231.60,324.00 A7.4,7.4 0 0 0 235.30,330.41 z" fill="#F6CB86" stroke="#fff" stroke-width="0.6"/>
+<path d="M226.50,324.00 A12.5,12.5 0 0 1 232.75,313.17 L235.30,317.59 A7.4,7.4 0 0 0 231.60,324.00 z" fill="#F6CB86" stroke="#fff" stroke-width="0.6"/>
+<path d="M232.75,313.17 A12.5,12.5 0 0 1 245.25,313.17 L242.70,317.59 A7.4,7.4 0 0 0 235.30,317.59 z" fill="#F6CB86" stroke="#fff" stroke-width="0.6"/>
+<path d="M244.23,318.77 A7.4,7.4 0 0 1 244.23,329.23 L240.98,325.98 A2.8,2.8 0 0 0 240.98,322.02 z" fill="#EFB04F" stroke="#fff" stroke-width="0.6"/>
+<path d="M244.23,329.23 A7.4,7.4 0 0 1 233.77,329.23 L237.02,325.98 A2.8,2.8 0 0 0 240.98,325.98 z" fill="#EFB04F" stroke="#fff" stroke-width="0.6"/>
+<path d="M233.77,329.23 A7.4,7.4 0 0 1 233.77,318.77 L237.02,322.02 A2.8,2.8 0 0 0 237.02,325.98 z" fill="#EFB04F" stroke="#fff" stroke-width="0.6"/>
+<path d="M233.77,318.77 A7.4,7.4 0 0 1 244.23,318.77 L240.98,322.02 A2.8,2.8 0 0 0 237.02,322.02 z" fill="#EFB04F" stroke="#fff" stroke-width="0.6"/>
+<circle cx="239" cy="324" r="2.8" fill="#fff" stroke="#B87203" stroke-width="0.4"/>
+<text xml:space="preserve" x="239.00" y="350.00" font-size="5" font-weight="normal" text-anchor="middle" fill="#5B6573"><tspan>AHA 16-segment</tspan></text>
+<rect x="14" y="360" width="292" height="58" rx="3" fill="#ECE6F5" stroke="#674A99" stroke-width="0.9"/>
+<text xml:space="preserve" x="20.00" y="371.00" font-size="6.9" font-weight="bold" text-anchor="start" fill="#674A99"><tspan>Motion tracking and strain</tspan></text>
+<rect x="20" y="378" width="58" height="34" rx="2.5" fill="#fff" stroke="#674A99" stroke-width="0.8"/>
+<text xml:space="preserve" x="49.00" y="393.53" font-size="5.8" font-weight="normal" text-anchor="middle" fill="#1F2328"><tspan>TV-L1 flow</tspan></text>
+<text xml:space="preserve" x="49.00" y="400.53" font-size="5.8" font-weight="normal" text-anchor="middle" fill="#1F2328"><tspan font-style="italic">t</tspan><tspan> − 1 → </tspan><tspan font-style="italic">t</tspan></text>
+<line x1="78" y1="395" x2="85" y2="395" stroke="#5B6573" stroke-width="0.9" marker-end="url(#ah)"/>
+<rect x="85" y="378" width="58" height="34" rx="2.5" fill="#fff" stroke="#674A99" stroke-width="0.8"/>
+<text xml:space="preserve" x="114.00" y="393.53" font-size="5.8" font-weight="normal" text-anchor="middle" fill="#1F2328"><tspan>Compose φ</tspan><tspan dy="1.60" font-size="4.18">ED→t</tspan><tspan dy="-1.60">;</tspan></text>
+<text xml:space="preserve" x="114.00" y="400.53" font-size="5.8" font-weight="normal" text-anchor="middle" fill="#1F2328"><tspan>warp ED labels once</tspan></text>
+<line x1="143" y1="395" x2="150" y2="395" stroke="#5B6573" stroke-width="0.9" marker-end="url(#ah)"/>
+<rect x="150" y="378" width="58" height="34" rx="2.5" fill="#fff" stroke="#674A99" stroke-width="0.8"/>
+<text xml:space="preserve" x="179.00" y="393.53" font-size="5.8" font-weight="normal" text-anchor="middle" fill="#1F2328"><tspan>Dice vs expert ES;</tspan></text>
+<text xml:space="preserve" x="179.00" y="400.53" font-size="5.8" font-weight="normal" text-anchor="middle" fill="#1F2328"><tspan>GCS, GRS</tspan></text>
+<line x1="219" y1="388.0" x2="259" y2="388.0" stroke="#5B6573" stroke-width="0.4"/>
+<polyline points="219.00,388.00 220.00,387.67 221.00,387.07 222.00,386.31 223.00,385.42 224.00,384.45 225.00,383.41 226.00,382.33 227.00,381.24 228.00,380.15 229.00,379.08 230.00,378.05 231.00,377.08 232.00,376.19 233.00,375.38 234.00,374.68 235.00,374.09 236.00,373.62 237.00,373.28 238.00,373.07 239.00,373.00 240.00,373.07 241.00,373.28 242.00,373.62 243.00,374.09 244.00,374.68 245.00,375.38 246.00,376.19 247.00,377.08 248.00,378.05 249.00,379.08 250.00,380.15 251.00,381.24 252.00,382.33 253.00,383.41 254.00,384.45 255.00,385.42 256.00,386.31 257.00,387.07 258.00,387.67 259.00,388.00" fill="none" stroke="#674A99" stroke-width="0.9"/>
+<polyline points="219.00,388.00 220.00,388.24 221.00,388.68 222.00,389.24 223.00,389.89 224.00,390.60 225.00,391.36 226.00,392.15 227.00,392.96 228.00,393.76 229.00,394.54 230.00,395.29 231.00,396.00 232.00,396.66 233.00,397.25 234.00,397.77 235.00,398.20 236.00,398.55 237.00,398.80 238.00,398.95 239.00,399.00 240.00,398.95 241.00,398.80 242.00,398.55 243.00,398.20 244.00,397.77 245.00,397.25 246.00,396.66 247.00,396.00 248.00,395.29 249.00,394.54 250.00,393.76 251.00,392.96 252.00,392.15 253.00,391.36 254.00,390.60 255.00,389.89 256.00,389.24 257.00,388.68 258.00,388.24 259.00,388.00" fill="none" stroke="#674A99" stroke-width="0.9" stroke-dasharray="2 1.2"/>
+<text xml:space="preserve" x="260.00" y="381.00" font-size="4.8" font-weight="normal" text-anchor="start" fill="#674A99"><tspan>GRS</tspan></text>
+<text xml:space="preserve" x="260.00" y="399.00" font-size="4.8" font-weight="normal" text-anchor="start" fill="#674A99"><tspan>GCS</tspan></text>
+<text xml:space="preserve" x="239.00" y="414.00" font-size="5" font-weight="normal" text-anchor="middle" fill="#5B6573"><tspan>ED → ES → ED</tspan></text>
+<text xml:space="preserve" x="14.00" y="429.00" font-size="5.7" font-weight="normal" text-anchor="start" fill="#5B6573"><tspan>Composing displacements before warping avoids accumulating nearest-neighbour resampling error.</tspan></text>
+<text xml:space="preserve" x="14.00" y="437.00" font-size="5.7" font-weight="normal" text-anchor="start" fill="#5B6573"><tspan>Strain is segmentation-based: circumferential from mid-wall perimeter, radial from wall thickness.</tspan></text>
+<text x="310" y="224" font-size="8.5" font-weight="bold" fill="#000">c</text>
+<text x="322" y="224" font-size="6" fill="#5B6573" letter-spacing="0.4">EVALUATION AND DIAGNOSIS</text>
+<rect x="316" y="232" width="192" height="62" rx="3" fill="#E1F2EE" stroke="#1E7F69" stroke-width="0.8"/>
+<text xml:space="preserve" x="322.00" y="243.00" font-size="7.2" font-weight="bold" text-anchor="start" fill="#1E7F69"><tspan>Segmentation metrics</tspan></text>
+<text xml:space="preserve" x="322.00" y="254.00" font-size="5.9" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>Dice = 2|</tspan><tspan font-style="italic">P</tspan><tspan> ∩ </tspan><tspan font-style="italic">G</tspan><tspan>| / (|</tspan><tspan font-style="italic">P</tspan><tspan>| + |</tspan><tspan font-style="italic">G</tspan><tspan>|); IoU, sens., spec., precision</tspan></text>
+<text xml:space="preserve" x="322.00" y="263.00" font-size="5.9" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>HD95, ASSD on 3D surfaces in mm (true spacing)</tspan></text>
+<text xml:space="preserve" x="322.00" y="272.00" font-size="5.9" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>Per-slice Dice; 95% bootstrap CI (2,000 resamples)</tspan></text>
+<text xml:space="preserve" x="322.00" y="281.00" font-size="5.9" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan font-style="italic">P</tspan><tspan>: uploaded NIfTI or classical Otsu baseline</tspan></text>
+<rect x="316" y="300" width="192" height="92" rx="3" fill="#E6F0F7" stroke="#245B84" stroke-width="0.8"/>
+<text xml:space="preserve" x="322.00" y="311.00" font-size="7.2" font-weight="bold" text-anchor="start" fill="#245B84"><tspan>ACDC diagnosis (5 groups)</tspan></text>
+<text xml:space="preserve" x="322.00" y="321.60" font-size="5.9" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>13 features: LV/RV EDVi, ESVi, EF,</tspan></text>
+<text xml:space="preserve" x="322.00" y="330.20" font-size="5.9" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>LVMi, RV/LV ratio, wall thickness</tspan></text>
+<text xml:space="preserve" x="322.00" y="338.80" font-size="5.9" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>mean/max/SD, thickening, Myo ratio</tspan></text>
+<text xml:space="preserve" x="322.00" y="347.40" font-size="5.9" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>Random forest, 500 trees</tspan></text>
+<text xml:space="preserve" x="322.00" y="356.00" font-size="5.9" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>NOR, MINF, DCM, HCM, RV</tspan></text>
+<text xml:space="preserve" x="440.00" y="320.00" font-size="5.4" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>5-fold CV</tspan></text>
+<rect x="440" y="323" width="60" height="6" fill="#E9EEF3"/>
+<rect x="440" y="323" width="56.4" height="6" fill="#245B84"/>
+<text xml:space="preserve" x="495.40" y="328.00" font-size="5.0" font-weight="bold" text-anchor="end" fill="#fff"><tspan>94%</tspan></text>
+<text xml:space="preserve" x="500.00" y="320.00" font-size="4.8" font-weight="normal" text-anchor="end" fill="#5B6573"><tspan>100 train</tspan></text>
+<text xml:space="preserve" x="440.00" y="342.00" font-size="5.4" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>Held-out</tspan></text>
+<rect x="440" y="345" width="60" height="6" fill="#E9EEF3"/>
+<rect x="440" y="345" width="54.0" height="6" fill="#245B84"/>
+<text xml:space="preserve" x="493.00" y="350.00" font-size="5.0" font-weight="bold" text-anchor="end" fill="#fff"><tspan>90%</tspan></text>
+<text xml:space="preserve" x="500.00" y="342.00" font-size="4.8" font-weight="normal" text-anchor="end" fill="#5B6573"><tspan>50 test</tspan></text>
+<text xml:space="preserve" x="440.00" y="364.00" font-size="5.4" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>Rules</tspan></text>
+<rect x="440" y="367" width="60" height="6" fill="#E9EEF3"/>
+<rect x="440" y="367" width="43.2" height="6" fill="#9AA5B1"/>
+<text xml:space="preserve" x="482.20" y="372.00" font-size="5.0" font-weight="bold" text-anchor="end" fill="#fff"><tspan>72%</tspan></text>
+<text xml:space="preserve" x="500.00" y="364.00" font-size="4.8" font-weight="normal" text-anchor="end" fill="#5B6573"><tspan>ACDC criteria</tspan></text>
+<text xml:space="preserve" x="440.00" y="386.00" font-size="4.8" font-weight="normal" text-anchor="start" fill="#5B6573"><tspan>classification accuracy</tspan></text>
+<rect x="316" y="398" width="192" height="50" rx="3" fill="#E9EBEE" stroke="#2C333C" stroke-width="0.8"/>
+<text xml:space="preserve" x="322.00" y="409.00" font-size="6.9" font-weight="bold" text-anchor="start" fill="#2C333C"><tspan>Quality control (per frame)</tspan></text>
+<text xml:space="preserve" x="322.00" y="419.60" font-size="5.9" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>One connected piece per structure and slice;</tspan></text>
+<text xml:space="preserve" x="322.00" y="428.20" font-size="5.9" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>LV cavity ≥ 70% enclosed by myocardium; no LV holes;</tspan></text>
+<text xml:space="preserve" x="322.00" y="436.80" font-size="5.9" font-weight="normal" text-anchor="start" fill="#1F2328"><tspan>LV on ≥ 4 slices; myocardium and RV present</tspan></text>
+</svg>
